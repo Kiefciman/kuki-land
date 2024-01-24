@@ -8,6 +8,7 @@
 
 import pygame
 import sys
+import time
 from settings import *
 from display import display_init, display_update
 from world import World
@@ -20,6 +21,7 @@ class Game:
         
     def run(self):
         while True:
+            time.sleep(0.005)
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit()
