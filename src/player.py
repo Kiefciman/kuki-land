@@ -1,7 +1,7 @@
 import pygame
 from imports import import_sprite_folder
 from settings import *
-from camera import layers
+from layers import layers
 
 class Player(pygame.sprite.Sprite):
     def __init__(self, pos, group):

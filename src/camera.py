@@ -1,11 +1,7 @@
 import pygame
 from settings import *
+from layers import layers
 
-layers = {
-    'water': 0,
-    'ground': 1,
-    'base': 2,
-}
 class CameraGroup(pygame.sprite.Group):
     def __init__(self):
         super().__init__()

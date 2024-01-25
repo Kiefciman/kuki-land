@@ -3,6 +3,7 @@ from settings import *
 from player import Player
 from ground import Ground
 from camera import CameraGroup
+from map import draw_ground_map
 
 class World:
     def __init__(self):
@@ -20,7 +21,8 @@ class World:
         self.sprites.update(dt)
 
     def draw_ground(self):
-        for x in range(10):
-            for y in range(10):
-                self.grass = Ground('grass', (x * tyle_size * 2, y * tyle_size * 2), self.sprites)
+        for y, row in enumerate(draw_ground_map()):
+            for x, col in enumerate(row):
+                if col == 'grass':
+                    self.grass = Ground('grass', (x * tyle_size * 2, y * tyle_size * 2), self.sprites)
         return self.grass

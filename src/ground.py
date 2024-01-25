@@ -1,5 +1,5 @@
 import pygame
-from camera import layers
+from layers import layers
 
 class Ground(pygame.sprite.Sprite):
     def __init__(self, ground_type, position, group):
