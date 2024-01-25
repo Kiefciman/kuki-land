@@ -10,4 +10,4 @@ vsync = True
 
 debug = True
 
-tyle_size = 40
+tyle_size = 32

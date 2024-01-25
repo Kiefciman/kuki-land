@@ -1,6 +1,7 @@
 import pygame
 from imports import import_sprite_folder
 from settings import *
+from camera import layers
 
 class Player(pygame.sprite.Sprite):
     def __init__(self, pos, group):
@@ -14,12 +15,12 @@ class Player(pygame.sprite.Sprite):
         self.animation_speed = 4
 
         self.image = self.animations[self.current_animation][self.current_frame]
-        #self.image = pygame.image.load('../assets/player/idle_down/0.png').convert_alpha()
         self.rect = self.image.get_rect(center = pos)
+        self.z = layers['base']
 
         self.walking_direction = pygame.math.Vector2()
         self.pos = pygame.math.Vector2(self.rect.center)
-        self.speed = 60
+        self.speed = 80
 
     def import_assets(self):
         self.animations = {
