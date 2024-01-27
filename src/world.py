@@ -12,7 +12,7 @@ class World:
         self.setup()
 
     def setup(self):
-        self.player = Player((50,50), self.sprites)
+        self.player = Player((1000,1000), self.sprites)
         self.draw_ground()
 
     def run(self, dt):
