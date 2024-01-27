@@ -16,7 +16,8 @@ class Player(pygame.sprite.Sprite):
 
         self.image = self.animations[self.current_animation][self.current_frame]
         self.rect = self.image.get_rect(center = pos)
-        self.z = layers['base']
+        self.z = layers['player']
+        #self.z = 10
 
         self.walking_direction = pygame.math.Vector2()
         self.pos = pygame.math.Vector2(self.rect.center)

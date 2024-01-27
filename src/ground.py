@@ -12,3 +12,4 @@ class Ground(pygame.sprite.Sprite):
                 self.image = pygame.transform.scale_by(image_surface, 2)
                 self.rect = self.image.get_rect(center = position)
                 self.z = layers['ground']
+                #self.z = 100

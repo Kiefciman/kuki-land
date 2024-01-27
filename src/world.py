@@ -4,6 +4,8 @@ from player import Player
 from ground import Ground
 from camera import CameraGroup
 from map import draw_ground_map
+from tree import Tree
+from layers import layers
 
 class World:
     def __init__(self):
@@ -14,10 +16,15 @@ class World:
     def setup(self):
         self.player = Player((1000,1000), self.sprites)
         self.draw_ground()
+        self.tree = Tree(1, (1200, 1200), self.sprites)
 
     def run(self, dt):
         self.display_surface.fill('green')
         self.sprites.camera_draw(self.player)
+        if self.player.rect.bottom >= self.tree.rect.bottom:
+            self.tree.z = layers['behind-player']
+        else:
+            self.tree.z = layers['infront-player']
         self.sprites.update(dt)
 
     def draw_ground(self):
