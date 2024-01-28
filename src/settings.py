@@ -2,8 +2,8 @@
 # Game Settings #
 #################
 
-screen_width = 1200
-screen_height = 700
+screen_width = 640
+screen_height = 360
 
 fullscreen = True
 vsync_on = True

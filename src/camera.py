@@ -8,7 +8,7 @@ class CameraGroup(pygame.sprite.Group):
         self.display_surface = pygame.display.get_surface()
         self.offset = pygame.math.Vector2()
 
-    def camera_draw(self, player):
+    def camera_draw(self, player, dt):
         self.offset.x = player.rect.centerx - screen_width / 2
         self.offset.y = player.rect.centery - screen_height / 2
 
@@ -17,4 +17,4 @@ class CameraGroup(pygame.sprite.Group):
                 if sprite.z == layer:
                     offset_rect = sprite.rect.copy()
                     offset_rect.center -= self.offset
-                    self.display_surface.blit(sprite.image, offset_rect)
+                    self.display_surface.blit(sprite.image, offset_rect) 

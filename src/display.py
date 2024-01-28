@@ -6,12 +6,13 @@ def display_init(self):
         size = (screen_width, screen_height),
         vsync = vsync_on,
         #flags = pygame.OPENGL | pygame.FULLSCREEN | pygame.DOUBLEBUF
-        flags = pygame.FULLSCREEN | pygame.DOUBLEBUF | pygame.HWSURFACE
+        #flags = pygame.FULLSCREEN | pygame.DOUBLEBUF | pygame.HWSURFACE
+        flags = pygame.FULLSCREEN | pygame.DOUBLEBUF
     )
     self.clock = pygame.time.Clock()
     pygame.display.set_caption('Kuki Land')
 
 def display_update(self):
-    dt = self.clock.tick() / 1000
+    dt = self.clock.tick(30) / 1000
     self.world.run(dt)
-    pygame.display.flip()
+    pygame.display.update()

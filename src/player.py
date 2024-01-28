@@ -13,15 +13,16 @@ class Player(pygame.sprite.Sprite):
         self.moving = False
         self.current_frame = 0
         self.animation_speed = 4
+        self.needs_update = True
 
         self.image = self.animations[self.current_animation][self.current_frame]
         self.rect = self.image.get_rect(center = pos)
         self.z = layers['player']
-        #self.z = 10
+        self.z_sort = False
 
         self.walking_direction = pygame.math.Vector2()
         self.pos = pygame.math.Vector2(self.rect.center)
-        self.speed = 80
+        self.speed = 40
 
     def import_assets(self):
         self.animations = {

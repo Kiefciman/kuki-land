@@ -4,4 +4,5 @@ layers = {
     'behind-player': 2,
     'player': 3,
     'infront-player': 4,
+    'z-sort': 5,
 }
