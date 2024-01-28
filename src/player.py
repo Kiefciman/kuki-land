@@ -22,7 +22,7 @@ class Player(pygame.sprite.Sprite):
 
         self.walking_direction = pygame.math.Vector2()
         self.pos = pygame.math.Vector2(self.rect.center)
-        self.speed = 40
+        self.speed = 80
 
     def import_assets(self):
         self.animations = {

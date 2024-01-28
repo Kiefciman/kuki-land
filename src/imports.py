@@ -9,8 +9,8 @@ def import_sprite_folder(path):
             if image.split('.')[1] == 'png':
                 image_path = path + '/' + image
                 image_surface = pygame.image.load(image_path).convert_alpha()
-                #image = pygame.transform.scale_by(image_surface, 2)
-                image = image_surface
+                image = pygame.transform.scale_by(image_surface, 2)
+                #image = image_surface
                 surfaces_list.append(image)
 
     return(surfaces_list)

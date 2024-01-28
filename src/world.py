@@ -20,7 +20,7 @@ class World:
         self.draw_trees()
 
     def run(self, dt):
-        self.display_surface.fill('green')
+        #self.display_surface.fill('green')
         self.sprites.camera_draw(self.player, dt)
         for sprite in self.sprites:
             if sprite.z_sort:
