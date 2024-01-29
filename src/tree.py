@@ -16,3 +16,11 @@ class Tree(pygame.sprite.Sprite):
         self.z = layers['behind-player']
         self.z_sort = True
         self.needs_update = False
+        self.can_collide = True
+        self.collisionx = [37, 21]
+        self.collisiony = [0, 20]
+        self.looking_direction = 'down'
+        self.can_move = False
+        self.hitbox = self.rect.copy().inflate((-64, -80))
+
+        self.hitbox.midbottom = self.rect.midbottom

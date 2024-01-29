@@ -1,3 +1,4 @@
+from re import S
 import pygame
 from settings import *
 from player import Player
@@ -6,6 +7,7 @@ from camera import CameraGroup
 from map import draw_ground_map, draw_enviorement_map
 from tree import Tree
 from layers import layers
+from collision import collision
 
 class World:
     def __init__(self):
@@ -28,6 +30,10 @@ class World:
                     sprite.z = layers['behind-player']
                 else:
                     sprite.z = layers['infront-player']
+
+            if sprite != self.player:
+                if sprite.can_collide:
+                    collision(self.player, sprite)
 
             if sprite.needs_update:
                 sprite.update(dt)

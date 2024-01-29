@@ -1,5 +1,7 @@
 import pygame
 from settings import *
+from OpenGL.GL import *
+from OpenGL.GLU import *
 
 def display_init(self):
     self.screen = pygame.display.set_mode(
@@ -14,7 +16,7 @@ def display_init(self):
     pygame.display.set_caption('Kuki Land')
 
 def display_update(self):
-    dt = self.clock.tick(30) / 1000
+    dt = self.clock.tick() / 1000
     self.world.run(dt)
-    pygame.display.update()
-    #pygame.display.flip()
+    #pygame.display.update()
+    pygame.display.flip()

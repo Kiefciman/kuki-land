@@ -21,12 +21,12 @@ class Game:
         
     def run(self):
         while True:
-            time.sleep(0.005)
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit()
                     sys.exit()
             display_update(self)
+            time.sleep(0.009)
             
 if __name__ == '__main__':
     game = Game()

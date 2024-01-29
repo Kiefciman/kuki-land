@@ -15,3 +15,4 @@ class Ground(pygame.sprite.Sprite):
                 self.z = layers['ground']
                 self.z_sort = False
                 self.needs_update = False
+                self.can_collide = False
