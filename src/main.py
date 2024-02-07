@@ -12,6 +12,7 @@ import time
 from settings import *
 from display import display_init, display_update
 from world import World
+from controls import controls
 
 class Game:
     def __init__(self):
@@ -21,10 +22,7 @@ class Game:
         
     def run(self):
         while True:
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    pygame.quit()
-                    sys.exit()
+            controls(self.world.player)
             display_update(self)
             time.sleep(0.009)
             

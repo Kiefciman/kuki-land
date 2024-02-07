@@ -18,6 +18,10 @@ class Player(pygame.sprite.Sprite):
         self.can_go_down = True
         self.can_go_left = True
         self.can_go_right = True
+        self.moving_up = False
+        self.moving_down = False
+        self.moving_left = False
+        self.moving_right = False
 
         self.image = self.animations[self.current_animation][self.current_frame]
         self.rect = self.image.get_rect(center = pos)
@@ -28,7 +32,7 @@ class Player(pygame.sprite.Sprite):
         self.can_move = True
         self.hitbox = self.rect.copy().inflate((-24, -60))
 
-        self.walking_direction = pygame.math.Vector2()
+        #self.walking_direction = pygame.math.Vector2()
         self.pos = pygame.math.Vector2(self.rect.center)
         self.speed = 100
 
@@ -48,59 +52,28 @@ class Player(pygame.sprite.Sprite):
             assets_path = '../assets/player/' + animation
             self.animations[animation] = import_sprite_folder(assets_path)
 
-    def input(self):
-        keys  = pygame.key.get_pressed()
-
-        if keys[pygame.K_w]:
-            #self.current_animation = 'walking_up'
+    def controls(self, dt):
+        if self.moving_up:
             if self.can_go_up:
-                self.walking_direction.y = -1
-            else:
-                self.walking_direction.y = 0
+                self.rect.y -= self.speed * dt
             self.looking_direction = 'up'
-        elif keys[pygame.K_s]:
-            #self.current_animation = 'walking_down'
+        elif self.moving_down:
             if self.can_go_down:
-                self.walking_direction.y = 1
-            else:
-                self.walking_direction.y = 0
+                self.rect.y += self.speed * dt
             self.looking_direction = 'down'
-        else:
-            self.walking_direction.y = 0
-
-        if keys[pygame.K_a]:
-            #self.current_animation = 'walking_left'
+        if self.moving_left:
             if self.can_go_left:
-                self.walking_direction.x = -1
-            else:
-                self.walking_direction.x = 0
+                self.rect.x -= self.speed * dt
             self.looking_direction = 'left'
-        elif keys[pygame.K_d]:
-            #self.current_animation = 'walking_right'
+        elif self.moving_right:
             if self.can_go_right:
-                self.walking_direction.x = 1
-            else:
-                self.walking_direction.x = 0
+                self.rect.x += self.speed * dt
             self.looking_direction = 'right'
-        else:
-            self.walking_direction.x = 0
 
-    def move(self, dt):
-        if self.walking_direction.magnitude() > 0:
-            self.walking_direction = self.walking_direction.normalize()
-
-        self.pos.x += self.walking_direction.x * self.speed * dt
-        self.rect.centerx = self.pos.x
-
-        self.pos.y += self.walking_direction.y * self.speed * dt
-        self.rect.centery = self.pos.y
-
-        if self.walking_direction == [0, 0]:
-            self.moving = False
-        else:
+        if self.moving_left or self.moving_right or self.moving_up or self.moving_down:
             self.moving = True
-
-        self.hitbox.midbottom = self.rect.midbottom
+        else:
+            self.moving = False
 
     def animate(self, dt):
         self.current_frame += dt * self.animation_speed
@@ -128,8 +101,10 @@ class Player(pygame.sprite.Sprite):
                 self.current_animation = 'walking_right'
             else:
                 self.current_animation = 'idle_right'
+        
+        self.hitbox.midbottom = self.rect.midbottom
 
     def update(self, dt):
-        self.input()
-        self.move(dt)
+        self.controls(dt)
+        #self.move(dt)
         self.animate(dt)
