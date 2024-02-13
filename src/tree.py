@@ -21,6 +21,6 @@ class Tree(pygame.sprite.Sprite):
         self.collisiony = [0, 20]
         self.looking_direction = 'down'
         self.can_move = False
-        self.hitbox = self.rect.copy().inflate((-64, -80))
+        self.hitbox = self.rect.copy().inflate((-64 * 2, -128 * 2))
 
         self.hitbox.midbottom = self.rect.midbottom

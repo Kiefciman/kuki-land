@@ -19,7 +19,7 @@ class World:
         self.player = Player((1000,1000), self.sprites)
         #self.player = Player((0, 0), self.sprites)
         self.draw_ground()
-        self.draw_trees()
+        self.draw_trees() 
 
     def run(self, dt):
         #self.display_surface.fill('green')

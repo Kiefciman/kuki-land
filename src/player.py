@@ -30,7 +30,7 @@ class Player(pygame.sprite.Sprite):
 
         self.can_collide = True
         self.can_move = True
-        self.hitbox = self.rect.copy().inflate((-24, -60))
+        self.hitbox = self.rect.copy().inflate((-24 * 2, -33 * 2))
 
         #self.walking_direction = pygame.math.Vector2()
         self.pos = pygame.math.Vector2(self.rect.center)
