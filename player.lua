@@ -7,9 +7,19 @@ function Player()
     return player
 end
 
-function DrawPlayer()
-    love.graphics.push()
-    love.graphics.scale(2, 2)
-    love.graphics.draw(player.sprite, player.x, player.y)
-    love.graphics.pop()
+function AddPlayerToSprites(sprites)
+    sprites[1] = {}
+    sprites[1][1] = 'player'
+    sprites[1][2] = player.sprite
+    sprites[1][3] = player.x
+    sprites[1][4] = player.y
+end
+
+function GetPlayerSprite(sprites)
+    for sprite_index, sprite in pairs(sprites) do
+        if sprite[1] == 'player' then
+            sprite[3] = player.x
+            sprite[4] = player.y
+        end
+    end
 end
