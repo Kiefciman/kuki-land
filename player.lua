@@ -4,6 +4,10 @@ function Player()
     player.y = 300
     player.speed = 100
     player.sprite = love.graphics.newImage('assets/player/idle_down/0.png')
+    player.moving_up = false
+    player.moving_down = false
+    player.moving_left = false
+    player.moving_right = false
     return player
 end
 

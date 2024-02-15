@@ -14,6 +14,7 @@ require 'tree'
 --require 'maps'
 require 'inspect'
 require 'y_sort'
+require 'collision'
 
 function love.load()
     sprites = {}
@@ -32,7 +33,13 @@ function love.update(dt)
     View(cam, player)
     GetPlayerSprite(sprites)
     table.sort(sprites, YSort)
+    for sprite_index, sprite in pairs(sprites) do
+        if sprite[1] == 'tree' then
+            Collision(player, sprite)
+        end
     end
+    --print(player.moving_up, player.moving_down, player.moving_left, player.moving_right)
+end
 
 function love.draw()
     cam:attach()
