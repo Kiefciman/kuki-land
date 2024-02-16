@@ -14,31 +14,31 @@ require 'tree'
 --require 'maps'
 require 'inspect'
 require 'y_sort'
-require 'collision'
+--require 'collision'
 
 function love.load()
+    world = love.physics.newWorld(0, 0, true)
+    world:setCallbacks(beginContact, endContact, preSolve, postSolve)
     sprites = {}
     cam = camera()
     love.graphics.setDefaultFilter("nearest", "nearest", 1)
-    player = Player()
+    player = Player(world)
     AddPlayerToSprites(sprites)
     ground = Ground()
-    tree = Tree()
+    --tree = Tree(world)
     TreeMap()
-    AddTreesToSprites(sprites)
+    AddTreesToSprites(sprites, world)
 end
 
 function love.update(dt)
-    Controls(dt)
+    Controls(dt, player)
     View(cam, player)
-    GetPlayerSprite(sprites)
+    UpdatePlayerSprite(sprites)
+    --UpdateTreeSprite(sprites)
     table.sort(sprites, YSort)
-    for sprite_index, sprite in pairs(sprites) do
-        if sprite[1] == 'tree' then
-            Collision(player, sprite)
-        end
-    end
-    --print(player.moving_up, player.moving_down, player.moving_left, player.moving_right)
+    world:update(dt)
+    UpdatePlayer()
+    UpdateTrees()
 end
 
 function love.draw()
@@ -46,9 +46,27 @@ function love.draw()
         DrawGround()
         love.graphics.push()
         love.graphics.scale(2, 2)
-        for sprite_index, sprite in pairs(sprites) do
+        for _, sprite in pairs(sprites) do
             love.graphics.draw(sprite[2], sprite[3], sprite[4])
+            --love.graphics.polygon('line', sprite[5]:getWorldPoints(sprite[6]:getPoints()))
         end
         love.graphics.pop()
     cam:detach()
+end
+
+function beginContact(a, b, collision)
+    --local x, y = collision:getNormal()
+    --print(x, y, a:getBody():getUserData(), b:getBody():getUserData())
+end
+
+function endContact()
+    
+end
+
+function preSolve()
+    
+end
+
+function postSolve()
+    
 end

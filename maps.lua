@@ -4,6 +4,7 @@ map_size = 100
 
 function TreeMap()
     tree_map = {}
+    math.randomseed(os.time())
 
     for y = 1, map_size + 1 do
         row = {}
