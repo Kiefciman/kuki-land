@@ -24,19 +24,20 @@ end
 
 function AddPlayerToSprites(sprites)
     sprites[1] = {}
-    sprites[1][1] = 'player'
-    sprites[1][2] = player.sprite
-    sprites[1][3] = player.x
-    sprites[1][4] = player.y
+    sprites[1].type = 'player'
+    sprites[1].sprite = player.sprite
+    sprites[1].x = player.x
+    sprites[1].y = player.y
 end
 
 function UpdatePlayerSprite(sprites)
     for _, sprite in pairs(sprites) do
-        if sprite[1] == 'player' then
-            sprite[3] = player.x
-            sprite[4] = player.y
-            sprite[5] = player.body
-            sprite[6] = player.shape
+        if sprite.type == 'player' then
+            sprite.x = player.x
+            sprite.y = player.y
+            sprite.body = player.body
+            sprite.shape = player.shape
+            sprite.id = 0
         end
     end
 end

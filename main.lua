@@ -28,6 +28,7 @@ function love.load()
     --tree = Tree(world)
     TreeMap()
     AddTreesToSprites(sprites, world)
+    --fixYSort(sprites)
 end
 
 function love.update(dt)
@@ -35,10 +36,11 @@ function love.update(dt)
     View(cam, player)
     UpdatePlayerSprite(sprites)
     --UpdateTreeSprite(sprites)
-    table.sort(sprites, YSort)
+    --table.sort(sprites, YSort)
+    YSort(sprites, 'y', 'id')
     world:update(dt)
     UpdatePlayer()
-    UpdateTrees()
+    --UpdateTrees()
 end
 
 function love.draw()
@@ -47,7 +49,7 @@ function love.draw()
         love.graphics.push()
         love.graphics.scale(2, 2)
         for _, sprite in pairs(sprites) do
-            love.graphics.draw(sprite[2], sprite[3], sprite[4])
+            love.graphics.draw(sprite.sprite, sprite.x, sprite.y)
             --love.graphics.polygon('line', sprite[5]:getWorldPoints(sprite[6]:getPoints()))
         end
         love.graphics.pop()

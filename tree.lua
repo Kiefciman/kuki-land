@@ -39,14 +39,15 @@ function AddTreesToSprites(sprites, world)
         tree.x = tree.body:getX() - tree.sprite:getWidth() / 2
         tree.y = tree.body:getY() - tree.sprite:getHeight() + tree.sprite:getHeight() / 8
         tree_sprite = {}
-        tree_sprite[1] = 'tree'
-        tree_sprite[2] = tree.sprite
-        tree_sprite[3] = tree.x
-        tree_sprite[4] = tree.y
-        tree_sprite[5] = tree.body
-        tree_sprite[6] = tree.shape
-        tree.body:setUserData(id_no)
-        tree_sprite[7] = tree.body:getUserData()
+        tree_sprite.type = 'tree'
+        tree_sprite.sprite = tree.sprite
+        tree_sprite.x = tree.x
+        tree_sprite.y = tree.y
+        tree_sprite.body = tree.body
+        tree_sprite.shape = tree.shape
+        --tree.body:setUserData(id_no)
+        --tree_sprite.id = tree.body:getUserData()
+        tree_sprite.id = id_no
         table.insert(sprites, tree_sprite)
         id_no = id_no + 1
     end
