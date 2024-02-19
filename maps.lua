@@ -1,6 +1,5 @@
 inspect = require 'inspect'
-
-map_size = 100
+require 'settings'
 
 function TreeMap()
     math.randomseed(os.time())

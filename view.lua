@@ -6,19 +6,21 @@ function View(camera, player)
 
     camera:lookAt(player.x * 2, player.y * 2)
 
-    if camera.x < screen_width / 2 then
-        camera.x = screen_width / 2
-    end
+    love.graphics.setBackgroundColor(0, 0, 1)
 
-    if camera.y < screen_height / 2 then
-        camera.y = screen_height / 2
-    end
+    --if camera.x < screen_width / 2 then
+    --    camera.x = screen_width / 2
+    --end
 
-    if camera.x > map_width - screen_width / 2 then
-        camera.x = map_width - screen_width / 2
-    end
+    --if camera.y < screen_height / 2 then
+    --    camera.y = screen_height / 2
+    --end
 
-    if camera.y > map_height - screen_height / 2 then
-        camera.y = map_height - screen_height / 2
-    end
+    --if camera.x > map_width - screen_width / 2 then
+    --    camera.x = map_width - screen_width / 2
+    --end
+
+    --if camera.y > map_height - screen_height / 2 then
+    --    camera.y = map_height - screen_height / 2
+    --end
 end

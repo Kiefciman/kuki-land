@@ -15,6 +15,7 @@ require 'tree'
 require 'inspect'
 require 'y_sort'
 --require 'collision'
+require 'display'
 
 function love.load()
     world = love.physics.newWorld(0, 0, true)
