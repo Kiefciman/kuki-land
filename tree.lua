@@ -1,5 +1,5 @@
 require 'maps'
-require 'inspect'
+require 'lib/inspect'
 
 function Tree(world)
     tree = {}

@@ -8,11 +8,11 @@
 require 'player'
 require 'controls'
 require 'ground'
-camera = require 'camera'
+camera = require 'lib/camera'
 require 'view'
 require 'tree'
 --require 'maps'
-require 'inspect'
+require 'lib/inspect'
 require 'y_sort'
 --require 'collision'
 require 'display'
@@ -46,9 +46,9 @@ end
 
 function love.draw()
     cam:attach()
-        DrawGround()
         love.graphics.push()
         love.graphics.scale(2, 2)
+        DrawGround()
         for _, sprite in pairs(sprites) do
             love.graphics.draw(sprite.sprite, sprite.x, sprite.y)
             --love.graphics.polygon('line', sprite[5]:getWorldPoints(sprite[6]:getPoints()))

@@ -1,4 +1,4 @@
-require 'inspect'
+require 'lib/inspect'
 
 function Player(world)
     player = {}
