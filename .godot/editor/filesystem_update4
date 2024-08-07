@@ -1,0 +1,7 @@
+res://enities/player.tscn
+res://levels/level_1.tscn
+res://objects/tree.tscn
+res://spawners/tree_spawner.tscn
+res://objects/ground.tscn
+res://levels/level.gd
+res://scripts/save_manager.gd
