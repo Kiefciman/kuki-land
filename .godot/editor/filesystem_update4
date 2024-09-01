@@ -3,5 +3,5 @@ res://levels/level_1.tscn
 res://objects/tree.tscn
 res://spawners/tree_spawner.tscn
 res://objects/ground.tscn
+res://ui/tile_select.tscn
 res://levels/level.gd
-res://scripts/save_manager.gd

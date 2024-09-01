@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://caoy52r0hgjx8"
-path="res://.godot/imported/2.png-1ce7b109609c3837264784abb07a16cf.ctex"
+uid="uid://bpyntg8hdym8a"
+path="res://.godot/imported/tile-select.png-5ba458e98f9f3ff9233aa77854153d0b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/player/walking_left/2.png"
-dest_files=["res://.godot/imported/2.png-1ce7b109609c3837264784abb07a16cf.ctex"]
+source_file="res://assets/ui/tile-select.png"
+dest_files=["res://.godot/imported/tile-select.png-5ba458e98f9f3ff9233aa77854153d0b.ctex"]
 
 [params]
 

@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://c6ddf62nd7ini"]
+
+[ext_resource type="Script" path="res://ui/tile_select.gd" id="1_8xypp"]
+[ext_resource type="Texture2D" uid="uid://bpyntg8hdym8a" path="res://assets/ui/tile-select.png" id="1_kvru5"]
+
+[node name="tile_select" type="Node2D"]
+z_index = 100
+z_as_relative = false
+script = ExtResource("1_8xypp")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_kvru5")

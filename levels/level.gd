@@ -5,11 +5,7 @@ extends Node2D
 @export var tree_scene: PackedScene
 @export var tree_spawner_scene: PackedScene
 @export var ground_scene: PackedScene
-
-var save_data = {}
-var ground_map = []
-var tree_spawner_map = []
-var tree_map = []
+@export var tile_select_scene: PackedScene
 
 func TreeSpawnerGeneration():
 	for y in range(map_height):
@@ -29,23 +25,25 @@ func TreeSpawnerGeneration():
 				continue
 			
 			var position = [(x + 1) * 32, (y + 1) * 32]
-			tree_spawner_map.append(position)
+			Maps.tree_spawner_map.append(position)
 			
-	save_data.tree_spawner_map = tree_spawner_map
+	Maps.save_data.tree_spawner_map = Maps.tree_spawner_map
 			
 func TreeGeneration():
-	for tree_spawner in save_data.tree_spawner_map:
+	for tree_spawner in Maps.save_data.tree_spawner_map:
 		#var position = [tree_spawner[0], tree_spawner[1]]
 		var tree = tree_scene.instantiate()
 		$trees.add_child(tree)
 		tree.global_position = Vector2(tree_spawner[0], tree_spawner[1])
+		#tree_map.append([tree.global_position.x / 32, tree.global_position.y / 32])
+		Maps.map[str([tree.global_position.x / 32, tree.global_position.y / 32])] = 'tree'
 	
 func GroundTopBottom(y):
 	for x in range(map_width):
 		var probability = randi_range(1, 100)
 		if probability > 40:
 			var position = [(x + 1) * 32, y]
-			ground_map.append(position)
+			Maps.ground_map.append(position)
 			#var ground = ground_scene.instantiate()
 			#$grounds.add_child(ground)
 			#ground.global_position = Vector2((x + 1) * 32, y)
@@ -54,7 +52,7 @@ func GroundLeftRight(x, y):
 	var probability = randi_range(1, 100)
 	if probability > 40:
 		var position = [x, y * 32]
-		ground_map.append(position)
+		Maps.ground_map.append(position)
 		#var ground = ground_scene.instantiate()
 		#$grounds.add_child(ground)
 		#ground.global_position = Vector2(x, y * 32)
@@ -69,7 +67,7 @@ func GroundGeneration():
 		
 		for x in range(map_width):
 			var position = [(x + 1) * 32, (y + 1) * 32]
-			ground_map.append(position)
+			Maps.ground_map.append(position)
 			#var ground = ground_scene.instantiate()
 			#$grounds.add_child(ground)
 			#ground.global_position.x = (x + 1) * 32
@@ -77,10 +75,10 @@ func GroundGeneration():
 			
 	GroundTopBottom(map_height * 32 + 32)
 	
-	save_data.ground_map = ground_map
+	Maps.save_data.ground_map = Maps.ground_map
 			
 func LoadGround():
-	for position in save_data.ground_map:
+	for position in Maps.save_data.ground_map:
 		var ground = ground_scene.instantiate()
 		$grounds.add_child(ground)
 		ground.global_position.x = position[0]
@@ -90,16 +88,36 @@ func GenerateMap():
 	GroundGeneration()
 	TreeSpawnerGeneration()
 		
+func AddTileSelect():
+	var tile_select = tile_select_scene.instantiate()
+	$ui.add_child(tile_select)
+
+func CheckTile():
+	var tile = str($ui/tile_select.mouse_global_position)
+
+	if tile == '[null, null]':
+		return
+		
+	if Maps.map.has(tile):
+		#print(map[tile], tile)
+		Maps.selected_tile.type = Maps.map[tile]
+	else:
+		Maps.selected_tile.type = 'ground'
+		
+	Maps.selected_tile.position = tile
+	
 func _ready():
 	if SaveManager.CheckSaveFile():
-		save_data = SaveManager.LoadSave()
+		Maps.save_data = SaveManager.LoadSave()
 	else:
 		GenerateMap()
-		SaveManager.WriteSave(save_data)
+		SaveManager.WriteSave(Maps.save_data)
 		
-	print(save_data)
+	#print(save_data)
 	LoadGround()
 	TreeGeneration()
+	AddTileSelect()
+	#print(map)
 		
 func _process(delta):
 	for tree in $trees.get_children():
@@ -107,3 +125,6 @@ func _process(delta):
 			tree.z_index = $player.z_index + 1
 		else:
 			tree.z_index = $player.z_index - 1
+			
+	CheckTile()
+	#print(selected_tile)
