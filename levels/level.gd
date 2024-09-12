@@ -6,6 +6,7 @@ extends Node2D
 @export var tree_spawner_scene: PackedScene
 @export var ground_scene: PackedScene
 @export var tile_select_scene: PackedScene
+@export var cursor_scene: PackedScene
 
 func TreeSpawnerGeneration():
 	for y in range(map_height):
@@ -106,7 +107,17 @@ func CheckTile():
 		
 	Maps.selected_tile.position = tile
 	
+func ZOrder(objects):
+	for object in self.get_node(objects).get_children():
+		if object.get_node('origin').global_position.y > $player.get_node('origin').global_position.y:
+			object.z_index = $player.z_index + 1
+		else:
+			object.z_index = $player.z_index - 1
+	
 func _ready():
+	var cursor = cursor_scene.instantiate()
+	self.add_child(cursor)
+	
 	if SaveManager.CheckSaveFile():
 		Maps.save_data = SaveManager.LoadSave()
 	else:
@@ -120,11 +131,8 @@ func _ready():
 	#print(map)
 		
 func _process(delta):
-	for tree in $trees.get_children():
-		if tree.get_node('origin').global_position.y > $player.get_node('origin').global_position.y:
-			tree.z_index = $player.z_index + 1
-		else:
-			tree.z_index = $player.z_index - 1
+	ZOrder('trees')
+	ZOrder('items')
 			
 	CheckTile()
 	#print(selected_tile)

@@ -1,0 +1,58 @@
+[gd_scene load_steps=7 format=3 uid="uid://devggiwiosguh"]
+
+[ext_resource type="Script" path="res://ui/cursor.gd" id="1_57xfl"]
+[ext_resource type="Texture2D" uid="uid://bgfayde3mj7q8" path="res://assets/ui/cursor-normal.png" id="2_vf8ct"]
+[ext_resource type="Texture2D" uid="uid://d1xo5re5rvu2d" path="res://assets/ui/cursor-axe.png" id="3_q4k8f"]
+
+[sub_resource type="Animation" id="Animation_kbfi7"]
+resource_name = "click"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.785398, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_xdfmx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_y7ahm"]
+_data = {
+"RESET": SubResource("Animation_xdfmx"),
+"click": SubResource("Animation_kbfi7")
+}
+
+[node name="Cursor" type="Node2D"]
+z_index = 100
+z_as_relative = false
+script = ExtResource("1_57xfl")
+normal = ExtResource("2_vf8ct")
+axe = ExtResource("3_q4k8f")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_y7ahm")
+}
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

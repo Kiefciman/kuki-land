@@ -1,5 +1,6 @@
-Sprite2D
+AnimationPlayer
 Node2D
+Sprite2D
 Node
 StaticBody2D
 CollisionShape2D

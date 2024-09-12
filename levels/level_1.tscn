@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dvgf8di3onmf3"]
+[gd_scene load_steps=8 format=3 uid="uid://dvgf8di3onmf3"]
 
 [ext_resource type="Script" path="res://levels/level.gd" id="1_yo026"]
 [ext_resource type="PackedScene" uid="uid://b18bn2isech" path="res://enities/player.tscn" id="2_1reuf"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cvdsrbe1bsgik" path="res://objects/tree.tscn" id="3_uf4tc"]
 [ext_resource type="PackedScene" uid="uid://bdndsecxfdbmv" path="res://spawners/tree_spawner.tscn" id="4_ygh2v"]
 [ext_resource type="PackedScene" uid="uid://c6ddf62nd7ini" path="res://ui/tile_select.tscn" id="5_b2qs1"]
+[ext_resource type="PackedScene" uid="uid://devggiwiosguh" path="res://ui/cursor.tscn" id="6_4siby"]
 
 [node name="level1" type="Node2D"]
 script = ExtResource("1_yo026")
@@ -13,6 +14,7 @@ tree_scene = ExtResource("3_uf4tc")
 tree_spawner_scene = ExtResource("4_ygh2v")
 ground_scene = ExtResource("3_r3jm2")
 tile_select_scene = ExtResource("5_b2qs1")
+cursor_scene = ExtResource("6_4siby")
 
 [node name="player" parent="." instance=ExtResource("2_1reuf")]
 position = Vector2(226, 72)
@@ -23,3 +25,5 @@ position = Vector2(226, 72)
 z_index = -100
 
 [node name="ui" type="Node2D" parent="."]
+
+[node name="items" type="Node2D" parent="."]

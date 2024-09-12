@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://cbonvbdp7t3fp"]
+
+[ext_resource type="Texture2D" uid="uid://c7cq68s2c3soe" path="res://assets/items/log-1.png" id="1_ucbrr"]
+
+[node name="log" type="Node2D"]
+metadata/pickable = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_ucbrr")
+
+[node name="origin" type="Node2D" parent="."]

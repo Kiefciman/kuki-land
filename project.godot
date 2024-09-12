@@ -19,7 +19,6 @@ config/icon="res://icon.svg"
 
 SaveManager="*res://scripts/save_manager.gd"
 Maps="*res://scripts/maps.gd"
-DiscordRPCLoader="*res://addons/discord-rpc-gd/nodes/discord_autoload.gd"
 
 [display]
 
